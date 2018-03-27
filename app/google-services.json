@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "280138549348",
+    "firebase_url": "https://classchat-546a8.firebaseio.com",
+    "project_id": "classchat-546a8",
+    "storage_bucket": "classchat-546a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280138549348:android:cc97c52516df565c",
+        "android_client_info": {
+          "package_name": "liadginosar.classchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280138549348-5l17jri85utsrkshgc4t4dd488rqonnd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "liadginosar.classchat",
+            "certificate_hash": "e28157e61652cb5f237285e361641a82b60657fa"
+          }
+        },
+        {
+          "client_id": "280138549348-399dkhr3ka0do6vh544c3vkpo4e8s8j2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ60rq3uoDLulfh4C4uPjlfP9GcbNOjxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280138549348-399dkhr3ka0do6vh544c3vkpo4e8s8j2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
