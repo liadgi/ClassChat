@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,8 +50,8 @@ public class DiscussionsViewModel extends ViewModel {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 try {
-                    Discussion disc = dataSnapshot.getValue(Discussion.class);
-                    addDiscussionFromDB(disc);
+                    //Discussion disc = dataSnapshot.getValue(Discussion.class);
+                    //addDiscussionFromDB(disc);
                 } catch (Exception e) {
                     System.out.println("Exception");
                 }
@@ -64,19 +65,56 @@ public class DiscussionsViewModel extends ViewModel {
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+
+
+
+
+        mFirebaseRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                try {
+                    Discussion disc = dataSnapshot.getValue(Discussion.class);
+                    addDiscussionFromDB(disc);
+                } catch (Exception e) {
+                    System.out.println("Exception");
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void addDiscussionFromDB(Discussion disc) {
-        getDiscussions().getValue().add(disc);
-        discussions.setValue(discussions.getValue());
+        List<Discussion> discs = getDiscussions().getValue();
+        discs.add(disc);
+        discussions.postValue(discs);
     }
 
     public void addDiscussion(Discussion discussion) {
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(Discussion.CLASSROOM_PATH);
 
-
-        mFirebaseRef.setValue(discussion);
+        mFirebaseRef.push().setValue(discussion);
     }
 
 }
