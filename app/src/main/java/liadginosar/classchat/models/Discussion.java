@@ -10,12 +10,27 @@ import java.util.List;
  */
 
 public class Discussion {
-    public String title;
-    public List<String> options;
+    private String title;
+    private List<String> options;
 
     public static final String CLASSROOM_PATH = "/classroom/";
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(CLASSROOM_PATH);
 
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
 }

@@ -16,7 +16,6 @@
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,11 +26,11 @@
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_marginStart="140dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="93dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDiscussionTitle" />
 
     <Button
         android:id="@+id/buttonAddDiscussionOption"

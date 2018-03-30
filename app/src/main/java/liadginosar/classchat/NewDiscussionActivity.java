@@ -47,8 +47,8 @@ public class NewDiscussionActivity extends AppCompatActivity {
                 Discussion discussion = new Discussion();
 
                 EditText title = findViewById(R.id.editTextDiscussionTitle);
-                discussion.title = title.getText().toString();
-                discussion.options = options;
+                discussion.setTitle(title.getText().toString());
+                discussion.setOptions(options);
 
 
                 model.addDiscussion(discussion);
