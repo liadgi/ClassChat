@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import liadginosar.classchat.models.DataHolder;
+
 public class MainActivity extends AppCompatActivity {
 
     final public static String CLASSROOM = "classroom";
@@ -23,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
                 EditText editTextClassroom = findViewById(R.id.joinClassInput);
                 String classNumber = editTextClassroom.getText().toString();
 
-                Intent intent = new Intent(v.getContext(), ClassroomActivity.class);
-                intent.putExtra(CLASSROOM, classNumber);
+                DataHolder.getInstance().setData(classNumber);
 
+                Intent intent = new Intent(v.getContext(), ClassroomActivity.class);
                 v.getContext().startActivity(intent);
 
             }

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import java.util.LinkedList;
 import java.util.List;
 
+import liadginosar.classchat.models.DataHolder;
 import liadginosar.classchat.models.Discussion;
 import liadginosar.classchat.viewModels.DiscussionsViewModel;
 
@@ -52,8 +53,6 @@ public class NewDiscussionActivity extends AppCompatActivity {
 
 
                 model.addDiscussion(discussion);
-
-
 
                 Intent intent = new Intent(v.getContext(), ClassroomActivity.class);
                 v.getContext().startActivity(intent);

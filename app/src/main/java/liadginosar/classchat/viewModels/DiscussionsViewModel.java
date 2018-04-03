@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.LinkedList;
 import java.util.List;
 
+import liadginosar.classchat.models.DataHolder;
 import liadginosar.classchat.models.Discussion;
 
 /**
@@ -21,6 +22,12 @@ import liadginosar.classchat.models.Discussion;
  */
 
 public class DiscussionsViewModel extends ViewModel {
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mFirebaseRef;
+
+    private ValueEventListener valueEventListener;
+    private ChildEventListener childEventListener;
+
     private MutableLiveData<List<Discussion>> discussions;
 
     public LiveData<List<Discussion>> getDiscussions() {
@@ -41,10 +48,11 @@ public class DiscussionsViewModel extends ViewModel {
     }
 
     private void addListener() {
-        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(Discussion.CLASSROOM_PATH);
+        String currentClassroom = DataHolder.getInstance().getData();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mFirebaseRef = mFirebaseDatabase.getReference(Discussion.CLASSROOM_PATH + currentClassroom);
 
-        mFirebaseRef.addValueEventListener(new ValueEventListener() {
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -64,13 +72,12 @@ public class DiscussionsViewModel extends ViewModel {
                 // Failed to read value
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
-        });
+        };
+
+        mFirebaseRef.addValueEventListener(valueEventListener);
 
 
-
-
-
-        mFirebaseRef.addChildEventListener(new ChildEventListener() {
+        childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 try {
@@ -101,7 +108,10 @@ public class DiscussionsViewModel extends ViewModel {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        };
+
+
+        mFirebaseRef.addChildEventListener(childEventListener);
     }
 
     private void addDiscussionFromDB(Discussion disc) {
@@ -111,10 +121,17 @@ public class DiscussionsViewModel extends ViewModel {
     }
 
     public void addDiscussion(Discussion discussion) {
+        String currentClassroom = DataHolder.getInstance().getData();
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(Discussion.CLASSROOM_PATH);
+        DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(Discussion.CLASSROOM_PATH + currentClassroom);
 
         mFirebaseRef.push().setValue(discussion);
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        mFirebaseRef.removeEventListener(childEventListener);
+        mFirebaseRef.removeEventListener(valueEventListener);
+    }
 }

@@ -48,7 +48,7 @@ public class DiscussionsAdapter extends RecyclerView.Adapter<DiscussionsAdapter.
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_row, parent, false);
 
-        //...
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
