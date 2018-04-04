@@ -17,17 +17,34 @@ import liadginosar.classchat.models.Discussion;
 public class DiscussionsAdapter extends RecyclerView.Adapter<DiscussionsAdapter.ViewHolder> {
     //private String[] mDataset;
     private List<Discussion> mDataset;
-    //private ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    // allows clicks events to be caught
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView mTextView;
         public ViewHolder(View v) {
             super(v);
             mTextView = v.findViewById(R.id.tvDiscussionTitle);
+            mTextView.setOnClickListener(this);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            if (mClickListener != null) mClickListener.onItemClick(v, getAdapterPosition());
         }
     }
 

@@ -12,6 +12,7 @@ import liadginosar.classchat.models.DataHolder;
 public class MainActivity extends AppCompatActivity {
 
     final public static String CLASSROOM = "classroom";
+    final public static String DISCUSSION = "discussion";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

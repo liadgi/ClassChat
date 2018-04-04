@@ -17,7 +17,7 @@ import liadginosar.classchat.models.DataHolder;
 import liadginosar.classchat.models.Discussion;
 import liadginosar.classchat.viewModels.DiscussionsViewModel;
 
-public class ClassroomActivity extends AppCompatActivity {
+public class ClassroomActivity extends AppCompatActivity implements DiscussionsAdapter.ItemClickListener {
 
     private RecyclerView mRecyclerView;
     private DiscussionsAdapter mAdapter;
@@ -58,6 +58,7 @@ public class ClassroomActivity extends AppCompatActivity {
 
         mAdapter = new DiscussionsAdapter(model.getDiscussions().getValue());
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setClickListener(this);
 
         model.getDiscussions().observe(this, (List<Discussion> item) ->
         {
@@ -66,5 +67,14 @@ public class ClassroomActivity extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
         });
 
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        // open Discussion page
+        Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
+        TextView tv = (TextView) view;
+        intent.putExtra(MainActivity.DISCUSSION, tv.getText().toString());
+        view.getContext().startActivity(intent);
     }
 }

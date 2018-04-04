@@ -14,8 +14,6 @@ public class Discussion {
     private List<String> options;
 
     public static final String CLASSROOM_PATH = "/classroom/";
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference(CLASSROOM_PATH);
 
 
     public String getTitle() {
