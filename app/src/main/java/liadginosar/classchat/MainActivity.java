@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import liadginosar.classchat.models.DataHolder;
+import liadginosar.classchat.models.Discussion;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
                 String classNumber = editTextClassroom.getText().toString();
 
                 DataHolder.getInstance().setData(classNumber);
+
+                //FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+                //DatabaseReference mFirebaseRef = mFirebaseDatabase.getReference("/classrooms/");
+
+                //DatabaseReference pushedDiscussionRef = mFirebaseRef.push();
+                //pushedDiscussionRef.setValue(classNumber);
 
                 Intent intent = new Intent(v.getContext(), ClassroomActivity.class);
                 v.getContext().startActivity(intent);

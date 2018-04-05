@@ -2,7 +2,6 @@ package liadginosar.classchat;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import liadginosar.classchat.models.DataHolder;
 import liadginosar.classchat.models.Discussion;
-import liadginosar.classchat.viewModels.DiscussionsViewModel;
+import liadginosar.classchat.viewModels.ClassroomViewModel;
 
 public class ClassroomActivity extends AppCompatActivity implements DiscussionsAdapter.ItemClickListener {
 
@@ -34,7 +33,7 @@ public class ClassroomActivity extends AppCompatActivity implements DiscussionsA
 
         title.setText(classroom);
 
-        DiscussionsViewModel model = ViewModelProviders.of(this).get(DiscussionsViewModel.class);
+        ClassroomViewModel model = ViewModelProviders.of(this).get(ClassroomViewModel.class);
 
         Button addDiscussionButton = findViewById(R.id.buttonAddDiscussion);
         addDiscussionButton.setOnClickListener(new View.OnClickListener() {

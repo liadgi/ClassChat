@@ -11,9 +11,8 @@ import android.widget.EditText;
 import java.util.LinkedList;
 import java.util.List;
 
-import liadginosar.classchat.models.DataHolder;
 import liadginosar.classchat.models.Discussion;
-import liadginosar.classchat.viewModels.DiscussionsViewModel;
+import liadginosar.classchat.viewModels.ClassroomViewModel;
 
 
 public class NewDiscussionActivity extends AppCompatActivity {
@@ -40,7 +39,7 @@ public class NewDiscussionActivity extends AppCompatActivity {
         });
 
         Button buttonSubmitDiscussion = findViewById(R.id.buttonSubmitDiscussion);
-        DiscussionsViewModel model = ViewModelProviders.of(this).get(DiscussionsViewModel.class);
+        ClassroomViewModel model = ViewModelProviders.of(this).get(ClassroomViewModel.class);
         buttonSubmitDiscussion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

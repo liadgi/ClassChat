@@ -13,6 +13,16 @@ public class Discussion {
     private String title;
     private List<String> options;
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    private List<Message> messages;
+
     public static final String CLASSROOM_PATH = "/classroom/";
 
 

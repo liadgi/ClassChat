@@ -16,5 +16,6 @@ public class DiscussionActivity extends AppCompatActivity {
         String discussion = intent.getStringExtra(MainActivity.DISCUSSION);
 
         // get discussion details from db
+
     }
 }
