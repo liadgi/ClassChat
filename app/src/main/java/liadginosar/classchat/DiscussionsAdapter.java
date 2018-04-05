@@ -15,7 +15,6 @@ import liadginosar.classchat.models.Discussion;
  */
 
 public class DiscussionsAdapter extends RecyclerView.Adapter<DiscussionsAdapter.ViewHolder> {
-    //private String[] mDataset;
     private List<Discussion> mDataset;
     private ItemClickListener mClickListener;
 

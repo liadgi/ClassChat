@@ -21,17 +21,18 @@ public class ClassroomActivity extends AppCompatActivity implements DiscussionsA
     private RecyclerView mRecyclerView;
     private DiscussionsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private String mClassroom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom);
 
-        String classroom = DataHolder.getInstance().getData();
+        mClassroom = DataHolder.getInstance().getData();
 
         TextView title = findViewById(R.id.textViewClassroomTitle);
 
-        title.setText(classroom);
+        title.setText(mClassroom);
 
         ClassroomViewModel model = ViewModelProviders.of(this).get(ClassroomViewModel.class);
 
@@ -74,6 +75,7 @@ public class ClassroomActivity extends AppCompatActivity implements DiscussionsA
         Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
         TextView tv = (TextView) view;
         intent.putExtra(MainActivity.DISCUSSION, tv.getText().toString());
+        intent.putExtra(MainActivity.CLASSROOM, mClassroom);
         view.getContext().startActivity(intent);
     }
 }
